@@ -88,25 +88,31 @@ def make_text(chains):
     """Return text from chains."""
 
     words = []
-    # use random's choice function to pick a random key from chains.keys()
-    # .keys() func. does not return a list so need to use list() to convert it to one
-    # choice(chains.keys())
-    # list(chains.keys())
 
-    new_our_key = our_key[i + 1]
-    words.append(new_our_key)
-    
-    choice(list(chains.keys()))
-    words.append(choice(list(chains.keys())))
-    
-    # new_ourkey = second word in first key + random word from .keys()
-    # chains[(word[1], random word from list tied to key)]
-
-    if new_our_key not in chains:
-        new_our_key = []
-        chains[new_our_key].append()
-    else:
-        chains[new_our_key]
+    # grab a key out of the dictionary 
+    random_key = choice(list(chains.keys()))
+    # print(random_key)
+    # grab one word out of the list that is associated with the key
+    random_word = choice(chains[random_key])
+    # would you -> could
+    # appending 2 words inside             the tuple and the random word
+    words.append(random_key[0])
+    words.append(random_key[1])
+    words.append(random_word)
+    # print(words)
+    # check if key doesnt work anymore
+    while True:
+        last_key = (words[-2], words[-1])
+        if last_key in chains:
+            # use last key to grab random word from chains dictionary
+            words.append(choice(chains[last_key]))
+            # add that random word to words 
+        else:
+            break
+    # create our new tuple out of the last 2 words
+    # grab random word, add to words
+    # print(words)
+    # rinse and repeat 
 
             
     return ' '.join(words)
